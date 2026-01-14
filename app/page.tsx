@@ -8,7 +8,7 @@ import {
   CheckCircle, Video, Globe, ChevronDown
 } from "lucide-react"
 import { SparklesCore } from "@/components/ui/sparkles"
-import { AnimatedText } from "@/components/ui/animated-shiny-text"
+import { TypingAnimation } from "@/components/ui/typing-animation"
 
 export default function Home() {
   return (
@@ -50,12 +50,10 @@ export default function Home() {
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-sm font-medium mb-4 backdrop-blur-sm">
               IEEE Conference Record: 70785
             </span>
-            <AnimatedText
+            <TypingAnimation
               text="IICASTEM’26"
-              textClassName="text-4xl md:text-6xl font-bold tracking-tight mb-2 leading-tight"
-              gradientColors="linear-gradient(90deg, #60a5fa, #ffffff, #60a5fa)"
-              gradientAnimationDuration={3}
-              className="py-0"
+              className="text-4xl md:text-6xl font-bold tracking-tight mb-2 leading-tight text-white"
+              duration={150}
             />
             <p className="text-xl md:text-2xl font-light text-slate-200 mb-8">
               IEEE International Conference on Applied Science, Technology, Engineering and Management
@@ -356,8 +354,8 @@ function Member({ name, role, org, highlighted }: { name: string, role: string, 
     <motion.div
       whileHover={{ scale: 1.02, translateY: -2 }}
       className={`group relative p-5 rounded-2xl transition-all duration-300 border ${highlighted
-          ? 'bg-blue-50/50 border-blue-200 hover:bg-blue-50 hover:shadow-lg hover:shadow-blue-900/5'
-          : 'bg-slate-50/80 border-slate-100 hover:bg-white hover:border-blue-100 hover:shadow-md'
+        ? 'bg-blue-50/50 border-blue-200 hover:bg-blue-50 hover:shadow-lg hover:shadow-blue-900/5'
+        : 'bg-slate-50/80 border-slate-100 hover:bg-white hover:border-blue-100 hover:shadow-md'
         }`}
     >
       <div className="flex items-start gap-4">
