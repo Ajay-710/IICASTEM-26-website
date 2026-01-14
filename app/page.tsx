@@ -7,24 +7,40 @@ import {
   Presentation, Mic, BookOpen, Mail, FileText,
   CheckCircle, Video, Globe, ChevronDown
 } from "lucide-react"
+import { SparklesCore } from "@/components/ui/sparkles"
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 overflow-x-hidden">
 
       {/* 🏠 HERO SECTION */}
-      <section id="home" className="relative h-screen flex items-center justify-center text-white overflow-hidden">
-        {/* Background Image with Gradient Overlay */}
+      <section id="home" className="relative h-screen flex items-center justify-center text-white overflow-hidden bg-slate-900">
+
+        {/* Background Image with Gradient Overlay and Sparkles */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-blue-900/60 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-blue-900/80 z-10" />
           <img
             src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2000&auto=format&fit=crop"
             alt="Conference Background"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-50"
           />
+
+          {/* Sparkles Effect */}
+          <div className="absolute inset-0 z-20">
+            <SparklesCore
+              id="tsparticlesfullpage"
+              background="transparent"
+              minSize={0.6}
+              maxSize={1.4}
+              particleDensity={50}
+              className="w-full h-full"
+              particleColor="#FFFFFF"
+              speed={0.5}
+            />
+          </div>
         </div>
 
-        <div className="relative z-20 text-center px-4 max-w-5xl mx-auto space-y-6">
+        <div className="relative z-30 text-center px-4 max-w-5xl mx-auto space-y-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -47,16 +63,16 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center max-w-4xl mx-auto"
           >
-            <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+            <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-colors">
               <Calendar className="text-blue-400 mb-2" size={28} />
               <p className="font-semibold text-lg">December 18, 2026</p>
             </div>
-            <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+            <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-colors">
               <Users className="text-blue-400 mb-2" size={28} />
               <p className="text-sm text-slate-300">Organized by</p>
               <p className="font-semibold">Alpha College of Engineering</p>
             </div>
-            <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+            <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-colors">
               <Globe className="text-blue-400 mb-2" size={28} />
               <p className="text-sm text-slate-300">Technical Sponsor</p>
               <p className="font-semibold">IEEE Madras Section</p>
@@ -206,7 +222,7 @@ export default function Home() {
       <section id="topics" className="py-20 bg-white">
         <div className="container mx-auto px-6 max-w-6xl">
           <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">Topics of Interest</h2>
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 items-start">
             <TopicCategory title="Artificial Intelligence" items={["Machine Intelligence", "Deep Learning", "Computer Vision", "Computational Intelligence", "Bioinformatics", "Bigdata Analytics"]} />
             <TopicCategory title="Next Gen Technologies" items={["Quantum Computing", "Block Chain", "Augmented/Virtual Reality", "Biometrics"]} />
             <TopicCategory title="Electronics & Circuits" items={["Analog/Mixed Signal/RF", "Millimeter wave circuits", "VLSI systems", "Nano/THz devices"]} />
@@ -221,32 +237,45 @@ export default function Home() {
 
       {/* ✍️ INSTRUCTIONS */}
       <section id="authors" className="py-20 bg-slate-50">
-        <div className="container mx-auto px-6 max-w-4xl">
+        <div className="container mx-auto px-6 max-w-5xl">
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-10">
             <h2 className="text-3xl font-bold text-slate-900 mb-8 border-b pb-4">Instructions to Authors</h2>
-            <ul className="space-y-6">
-              <li className="flex gap-4">
-                <FileText className="text-blue-600 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold text-lg text-slate-800">Paper Format</h3>
-                  <p className="text-slate-600">Authors should submit the full version of the paper as per IEEE Access Double Column template. Maximum limit: 6 pages.</p>
+            <ol className="space-y-6 list-decimal list-outside ml-5 text-slate-700">
+              <li className="pl-2">
+                <span className="font-semibold text-slate-900">Manuscript Submission:</span> Authors are invited to submit their manuscripts in not more than 6 pages in a double column, single-spaced format using a required IEEE Access template. Please follow the instructions from the following links:
+                <div className="mt-2 space-y-1 text-sm bg-slate-50 p-4 rounded-lg border border-slate-100">
+                  <p>Manuscript templates: <a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank" className="text-blue-600 hover:underline break-all">ieee.org/conferences/publishing/templates.html</a></p>
+                  <p>Plagiarism details: <a href="https://www.ieee.org/publications/rights/author-rights-responsibilities.html" target="_blank" className="text-blue-600 hover:underline break-all">ieee.org/publications/rights/author-rights-responsibilities.html</a></p>
+                  <p>Copyright information: <a href="https://www.ieee.org/publications/rights/copyright-policy.html" target="_blank" className="text-blue-600 hover:underline break-all">ieee.org/publications/rights/copyright-policy.html</a></p>
                 </div>
               </li>
-              <li className="flex gap-4">
-                <CheckCircle className="text-blue-600 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold text-lg text-slate-800">Submission</h3>
-                  <p className="text-slate-600">Submission must be done via EasyChair. All papers will undergo a thorough review process.</p>
+              <li className="pl-2">
+                <span className="font-semibold text-slate-900">Electronic Submission:</span> Only electronic submission in PDF format will be accepted through EasyChair.
+                <div className="mt-2">
+                  <a href="#" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors">
+                    <FileText size={16} /> Paper Submission Link (Coming Soon)
+                  </a>
                 </div>
               </li>
-              <li className="flex gap-4">
-                <Video className="text-blue-600 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold text-lg text-slate-800">Presentation</h3>
-                  <p className="text-slate-600">Selected papers will be allowed for presentation in Oral/Virtual mode. Published papers will be submitted for inclusion in IEEE Xplore.</p>
-                </div>
+              <li className="pl-2">
+                There should be only one corresponding author. He/She should not change the email id all through the conference process.
               </li>
-            </ul>
+              <li className="pl-2">
+                All the papers that are submitted will be carefully reviewed by at least two/three experts and reviews will be returned to the author to ensure the high quality of the accepted papers.
+              </li>
+              <li className="pl-2">
+                Authors of accepted papers must guarantee that their papers will be registered and presented at the conference.
+              </li>
+              <li className="pl-2">
+                Upon acceptance, at least one of the authors listed in the paper must attend the conference and present the paper according to the schedule. In an event that the presenter is unable to attend the conference for any unavoidable reasons, the accepted paper will not be considered for submission to the proceeding of the IEEE Xplore.
+              </li>
+              <li className="pl-2">
+                All <span className="font-bold text-slate-900">accepted and presented papers</span> will be submitted for inclusion into IEEE Xplore, subject to meeting IEEE Xplore’s scope and quality requirements.
+              </li>
+              <li className="pl-2">
+                All contributions must be original, should not have been published elsewhere and should not be intended to be published elsewhere during the review period.
+              </li>
+            </ol>
           </div>
         </div>
       </section>
@@ -254,21 +283,33 @@ export default function Home() {
       {/* 📍 CONTACT */}
       <section id="contact" className="py-20 bg-slate-900 text-white">
         <div className="container mx-auto px-6 max-w-4xl text-center">
-          <h2 className="text-3xl font-bold mb-8">Contact Us</h2>
-          <div className="bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 inline-block text-left w-full md:w-auto">
-            <h3 className="text-xl font-semibold mb-4 text-center border-b border-white/10 pb-4">Organizing Chair</h3>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <MapPin className="text-blue-400" />
-                <span>Alpha College of Engineering, Thirumazhisai, Chennai</span>
+          <h2 className="text-3xl font-bold mb-8">Address for Correspondence</h2>
+          <div className="bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 inline-block text-left w-full md:w-auto min-w-[320px]">
+            <h3 className="text-xl font-bold mb-1 text-center text-white">Organizing Chair</h3>
+            <h4 className="text-lg font-semibold mb-6 text-center text-blue-400">IICASTEM - 26</h4>
+
+            <div className="space-y-4 text-slate-300">
+              <div className="flex items-start gap-3">
+                <MapPin className="text-blue-500 mt-1 flex-shrink-0" />
+                <div className="space-y-1">
+                  <p className="font-semibold text-white">Alpha College of Engineering</p>
+                  <p>34, Udayavar Koil Street,</p>
+                  <p>Thirumazhisai,</p>
+                  <p>Chennai – 600124</p>
+                  <p>Tamil Nadu, INDIA</p>
+                </div>
               </div>
-              <div className="flex items-center gap-3">
-                <Mail className="text-blue-400" />
-                <a href="mailto:iicastem.ace@gmail.com" className="hover:text-blue-300 transition-colors">iicastem.ace@gmail.com</a>
+              <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+                <Mail className="text-blue-500 flex-shrink-0" />
+                <a href="mailto:IICASTEM.ace@gmail.com" className="hover:text-blue-300 transition-colors font-medium">IICASTEM.ace@gmail.com</a>
               </div>
             </div>
-            <div className="mt-8 text-center bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold cursor-not-allowed opacity-80">
-              Paper Submission Link (Coming Soon)
+
+            <div className="mt-8 pt-6 border-t border-white/10 text-center">
+              <p className="text-sm text-slate-400 mb-2">Website</p>
+              <a href="#" className="inline-block text-blue-400 hover:text-blue-300 font-medium transition-colors border-b border-blue-400/30 hover:border-blue-400">
+                Link Coming Soon
+              </a>
             </div>
           </div>
           <p className="mt-12 text-slate-500 text-sm">© 2026 IICASTEM. All Rights Reserved.</p>

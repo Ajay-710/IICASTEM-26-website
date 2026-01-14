@@ -52,8 +52,8 @@ export function TubelightNavbar() {
                             href={item.url}
                             onClick={() => setActiveTab(item.name)}
                             className={cn(
-                                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
-                                "text-muted-foreground hover:text-primary",
+                                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors whitespace-nowrap",
+                                "text-muted-foreground hover:text-white",
                                 isActive && "text-primary"
                             )}
                         >
