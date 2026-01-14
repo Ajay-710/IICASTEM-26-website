@@ -8,6 +8,7 @@ import {
   CheckCircle, Video, Globe, ChevronDown
 } from "lucide-react"
 import { SparklesCore } from "@/components/ui/sparkles"
+import { AnimatedText } from "@/components/ui/animated-shiny-text"
 
 export default function Home() {
   return (
@@ -49,9 +50,13 @@ export default function Home() {
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-sm font-medium mb-4 backdrop-blur-sm">
               IEEE Conference Record: 70785
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-2 leading-tight">
-              IICASTEM’26
-            </h1>
+            <AnimatedText
+              text="IICASTEM’26"
+              textClassName="text-4xl md:text-6xl font-bold tracking-tight mb-2 leading-tight"
+              gradientColors="linear-gradient(90deg, #60a5fa, #ffffff, #60a5fa)"
+              gradientAnimationDuration={3}
+              className="py-0"
+            />
             <p className="text-xl md:text-2xl font-light text-slate-200 mb-8">
               IEEE International Conference on Applied Science, Technology, Engineering and Management
             </p>
@@ -325,12 +330,21 @@ function CommitteeGroup({ title, children }: { title: string, children: React.Re
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden"
+      transition={{ duration: 0.5 }}
+      className="relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-slate-200/60 overflow-hidden"
     >
-      <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 font-bold text-lg text-slate-800">
-        {title}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600" />
+      <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between">
+        <h3 className="font-bold text-2xl text-slate-800 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600">
+          {title}
+        </h3>
+        <div className="hidden md:flex space-x-1">
+          <div className="w-2 h-2 rounded-full bg-blue-400/30" />
+          <div className="w-2 h-2 rounded-full bg-blue-400/60" />
+          <div className="w-2 h-2 rounded-full bg-blue-400" />
+        </div>
       </div>
-      <div className="p-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="p-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {children}
       </div>
     </motion.div>
@@ -339,11 +353,34 @@ function CommitteeGroup({ title, children }: { title: string, children: React.Re
 
 function Member({ name, role, org, highlighted }: { name: string, role: string, org: string, highlighted?: boolean }) {
   return (
-    <div className={`flex flex-col ${highlighted ? 'bg-blue-50/50 p-4 rounded-lg border border-blue-100' : ''}`}>
-      <span className="font-bold text-slate-800">{name}</span>
-      <span className="text-sm text-blue-600 font-medium">{role}</span>
-      {org && <span className="text-xs text-slate-500 mt-1">{org}</span>}
-    </div>
+    <motion.div
+      whileHover={{ scale: 1.02, translateY: -2 }}
+      className={`group relative p-5 rounded-2xl transition-all duration-300 border ${highlighted
+          ? 'bg-blue-50/50 border-blue-200 hover:bg-blue-50 hover:shadow-lg hover:shadow-blue-900/5'
+          : 'bg-slate-50/80 border-slate-100 hover:bg-white hover:border-blue-100 hover:shadow-md'
+        }`}
+    >
+      <div className="flex items-start gap-4">
+        <div className={`p-3 rounded-xl flex-shrink-0 ${highlighted ? 'bg-blue-100 text-blue-600' : 'bg-white text-slate-400 group-hover:text-blue-500 group-hover:bg-blue-50'} transition-colors`}>
+          <Users size={20} />
+        </div>
+        <div>
+          <h4 className="font-bold text-slate-900 text-lg leading-tight mb-1 group-hover:text-blue-700 transition-colors">
+            {name}
+          </h4>
+          <p className="text-sm text-blue-600 font-medium mb-2">{role}</p>
+          {org && (
+            <p className="text-xs text-slate-500 leading-relaxed border-t border-slate-200/60 pt-2 mt-2">
+              {org}
+            </p>
+          )}
+        </div>
+      </div>
+      {/* Decorative corner */}
+      <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-8 h-8 bg-blue-500/10 rotate-45 transform origin-bottom-left group-hover:bg-blue-500/20 transition-colors" />
+      </div>
+    </motion.div>
   )
 }
 
