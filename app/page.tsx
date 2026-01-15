@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 import { SparklesCore } from "@/components/ui/sparkles"
 import { TypingAnimation } from "@/components/ui/typing-animation"
+import { Countdown } from "@/components/ui/countdown"
 
 export default function Home() {
   return (
@@ -80,6 +81,16 @@ export default function Home() {
               <p className="text-sm text-slate-300">Technical Sponsor</p>
               <p className="font-semibold">IEEE Madras Section</p>
             </div>
+          </motion.div>
+
+          {/* Countdown timer moved below cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-8"
+          >
+            <Countdown targetDate="2026-12-18T09:00:00" />
           </motion.div>
         </div>
       </section>
